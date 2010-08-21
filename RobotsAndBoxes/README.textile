@@ -1,0 +1,7 @@
+bundle exec ruby server.rb
+
+http://files.slembcke.net/chipmunk/release/ChipmunkLatest-Docs/#cpBody
+http://code.google.com/p/gosu/source/browse/trunk/examples/ChipmunkIntegration.rb
+http://code.google.com/p/gosu/source/browse/trunk/examples/
+http://www.boost.org/doc/libs/1_37_0/doc/html/boost_asio.html
+http://think-async.com/Asio/AsioAndBoostAsio
