@@ -7,7 +7,8 @@
     %tr
       - while count_r < row do
         %td{ :id => "cell_#{count_r}_#{count_c}" }
-          test
+          %span
+            %img
         - count_r += 1
     - count_c += 1
     - count_r = 0
