@@ -16,7 +16,7 @@ class QuicktimeConnection < EM::Connection
   def post_init
     @go = false
     @stream = false
-    @primed = 0
+    @primed = false
     @response = nil
     @file = 1
     @sound = 1
@@ -44,41 +44,39 @@ class QuicktimeConnection < EM::Connection
     #   @http_headers
     @response = EventMachine::DelegatedHttpResponse.new(self)
     @response.status = 200
-    puts @http_request_uri.inspect
     case @http_request_uri
       when "/"
         @response.content = File.readlines('public/index.html').join
         @response.send_response
       when "/index.m3u8"
-        duration = 1 
+        duration = 1
         m3u = "#EXTM3U\n#EXT-X-ALLOW-CACHE:NO\n#EXT-X-TARGETDURATION:#{duration}\n#EXT-X-MEDIA-SEQUENCE:0\n"
-        100.times { |i|
-          m3u += "#EXTINF:#{duration}, no desc\nfileSequence#{i}.ts\n"
+        200.times { |i|
+          m3u += "#EXTINF:#{duration}, no desc\n#{i}.ts\n"
         }
         m3u += "#EXT-X-ENDLIST\n"
-        puts
-        puts m3u
-
-        #@response.content = m3u 
-        @response.content = m3u #File.readlines('public/index.m3u8').join
+        @response.content = m3u
         @response.send_response
     else
       @stream = true
       @response.keep_connection_open
       @response.content_type "video/MP2T"
-      if @primed > 5
+      #@response.content_type "audio/mp4a-latm"
+      if @primed
         @response.content = $audio[@sound]
         @timer = EventMachine.add_periodic_timer(WAIT_FPS) {
           if @go 
             @stream = false
             @go = false
             @timer.cancel
+            puts @response.content.length
             @response.send_response
           end
         }
       else
-        @primed += 1 
+        @primed = true 
         @response.content = $audio[0]
+        puts @response.content.length
         @response.send_response
       end
     end

@@ -18,5 +18,5 @@ require 'evma_httpserver/response'
 
 HOST = "0.0.0.0"
 PORT = 10101
-TICK_FPS = 1.0 / 5.0
-WAIT_FPS = 1.0 / 10.0
+TICK_FPS = 1.0 / 15.0
+WAIT_FPS = 1.0 / 15.0
