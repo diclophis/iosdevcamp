@@ -1,3 +1,8 @@
+:javascript
+  function coordinates(x,y){
+    jQ.post("coordinates", { x: x, y: y } );
+  }
+
 - column = 8
 - row = 8
 - count_c = 0
@@ -6,7 +11,7 @@
   - while count_c < column do
     %tr
       - while count_r < row do
-        %td{ :id => "cell_#{count_r}_#{count_c}" }
+        %td{ :id => "cell_#{count_r}_#{count_c}", :ontouchstart => "coordinates(#{count_c}, #{count_r})" }
           %img{ :src => "images/spacer.png" }
         - count_r += 1
     - count_c += 1
