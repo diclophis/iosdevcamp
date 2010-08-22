@@ -22,6 +22,13 @@ class Server < Sinatra::Application
     return
   end
   
+  post '/coordinates' do
+    socket = TCPSocket.open('192.168.89.211', 10102)
+    socket.write "$grid.at(#{params[:x]},#{params[:y]}).connection.play(#{params[:instrument] || (1..8).sort_by{rand}.first}); $grid\n"
+    puts socket.read
+    return
+  end
+  
 end
 
 

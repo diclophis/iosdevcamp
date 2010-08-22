@@ -41,4 +41,8 @@ class Grid
     @sets.to_json(*a)
   end
   
+  def select(id)
+    sets.select{|player| player.id == id}.pop
+  end
+  
 end

@@ -23,6 +23,7 @@ body#layout2 {
   padding: 10px;
   margin-top: 5px;
   margin-left: 45px;
+  font-size: 22px;
 }
 #form input[type=image] {
   display: block;
@@ -32,6 +33,17 @@ body#layout2 {
   margin-top: 70px;
   margin-left: 45px;
 }
+div#video {
+  display: block;
+  position: relative;
+  top: 60px;
+  left: 10px;
+  height: 152px;
+  overflow: hidden;
+}
+div#video video {
+  border: 1px solid #3d3d3d;
+}
 div#loadingbox {
   display: table-cell;
   vertical-align: bottom;
@@ -40,14 +52,14 @@ div#loadingbox {
 }
 img#loading_txt {
   position: relative;
-  top: 240px;
+  top: 100px;
   left: 20px;
 }
 
 div#avatar {
   display: inline;
   position: relative;
-  top: 230px;
+  top: 90px;
   left: 115px;
   width: 54px;
   height: 54px;
@@ -59,11 +71,21 @@ div#avatar img {
   height: 50px;
   border: 2px solid #333;
 }
+table#grid {
+  position: relative;
+  margin: 50px 0px 0px 115px;
+}
 table#grid tr td {
   background: transparent url(../images/thumb_bg.png) no-repeat;
   width: 64px;
   height: 64px;
+  padding: 5px;
 }
 table#grid tr td.current {
   background: transparent url(../images/current_bg.png) no-repeat;
+}
+table#grid tr td img {
+  margin: 7px;
+  width: 50px;
+  height: 50px;
 }
