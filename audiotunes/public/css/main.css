@@ -59,11 +59,21 @@ div#avatar img {
   height: 50px;
   border: 2px solid #333;
 }
+table#grid {
+  position: relative;
+  margin: 50px 0px 0px 115px;
+}
 table#grid tr td {
   background: transparent url(../images/thumb_bg.png) no-repeat;
   width: 64px;
   height: 64px;
+  padding: 5px;
 }
 table#grid tr td.current {
   background: transparent url(../images/current_bg.png) no-repeat;
+}
+table#grid tr td img {
+  margin: 7px;
+  width: 50px;
+  height: 50px;
 }
