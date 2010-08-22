@@ -7,13 +7,17 @@
 - row = 8
 - count_c = 0
 - count_r = 0
+- track = 1
 %table#grid
   - while count_c < column do
     %tr
       - while count_r < row do
-        - track = (1..15).sort_by{rand}.first
         %td{ :id => "cell_#{count_r}_#{count_c}", :ontouchstart => "coordinates(#{count_c}, #{count_r}, #{track})" }
           = track
+        - if track == 15
+          - track = 1
+        - else
+          - track += 1
         - count_r += 1
     - count_c += 1
     - count_r = 0
