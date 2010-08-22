@@ -1,12 +1,16 @@
+#video
 #loadingbox
   %span
     %img#loading_txt{ :src => "images/loading_txt.png" }
   #avatar
 
 :javascript
+  var video_tag1 = "<video src='http://192.168.89.211:10101/";
+  var video_tag2 = ".m3u8' controls autoplay ></video>";
   jQ(document).ready(function() {
     var paramsHash = getUrlVars();
     jQ.getScript("http://twitter.com/statuses/user_timeline/"+paramsHash.user+".json?callback=grabPicture&;count=1");
+    jQ('#video').html(video_tag1+paramsHash.user+video_tag2);
   });
 
   function getUrlVars() {

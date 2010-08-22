@@ -32,6 +32,12 @@ body#layout2 {
   margin-top: 70px;
   margin-left: 45px;
 }
+div#video {
+  position: relative;
+  top: 40px;
+  left: 10px;
+  height: 40px;
+}
 div#loadingbox {
   display: table-cell;
   vertical-align: bottom;
@@ -40,14 +46,14 @@ div#loadingbox {
 }
 img#loading_txt {
   position: relative;
-  top: 240px;
+  top: 200px;
   left: 20px;
 }
 
 div#avatar {
   display: inline;
   position: relative;
-  top: 230px;
+  top: 190px;
   left: 115px;
   width: 54px;
   height: 54px;
