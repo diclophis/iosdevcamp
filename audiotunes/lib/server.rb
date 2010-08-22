@@ -15,6 +15,7 @@ class Server < Sinatra::Application
   
   post '/player' do
     $grid.add(Player.new(session[:id], params[:lat], params[:lon]))
+    return
   end
   
 end
