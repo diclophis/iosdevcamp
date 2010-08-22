@@ -3,9 +3,12 @@
 class Linkage < EventMachine::Connection
   include EventMachine::Protocols::LineText2
 
+  def receive_binary_data(data)
+    raise data.inspect
+  end
+
   def receive_line(line)
     puts line.inspect
-    $last_command = line
   end
 
   def send_line(line)
@@ -13,11 +16,13 @@ class Linkage < EventMachine::Connection
   end
 
   def post_init
-    puts "console connected"
+    puts "client connected"
+    $connections[self] = Player.new 
   end
 
   def unbind
-    puts "console disconnected"
+    puts "client disconnected"
+    $connections.delete(self)
   end
 
   def disconnect

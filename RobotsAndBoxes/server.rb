@@ -14,6 +14,7 @@ EventMachine.run {
 
   @dt = 1.0 / 120.0
   @substeps = 6
+  @simulation_time = 0.0
 
   # Create our Space and set its damping
   # A damping of 0.8 causes the ship bleed off its force and torque over time
@@ -45,25 +46,31 @@ EventMachine.run {
   @space.add_body(@body_2)
   @space.add_shape(@shape_2)
 
-  @shape.body.p = CP::Vec2.new(-40, 0)
-  @shape_2.body.p = CP::Vec2.new(40, 0)
+  @shape.body.p = CP::Vec2.new(-60, 0)
+  @shape_2.body.p = CP::Vec2.new(60, 0)
 
   game_timer = EventMachine.add_periodic_timer(FPS) {
-    #loop and tick world
+    @simulation_time += FPS
+
+    if (@simulation_time % 5.0) < 0.5
+      @shape.body.p = CP::Vec2.new(-60, 0)
+      @shape_2.body.p = CP::Vec2.new(60, 0)
+    end
+
+    @shape.body.apply_impulse(CP::Vec2.new(1500.0, 0.0), CP::Vec2.new(0.0, 0.0))
+    @shape_2.body.apply_impulse(CP::Vec2.new(-2000.0, 0.0), CP::Vec2.new(0.0, 0.0))
 
     @substeps.times {
       @space.step(@dt)
     }
-
-    #p = @body.p
-    #p_2 = @body_2.p
-    #puts [p.x, p.y, p_2.x, p_2.y].inspect
     
-    #@shape.body.apply_impulse(CP::Vec2.new(1500.0, 0.0), CP::Vec2.new(0.0, 0.0))
-    #@shape_2.body.apply_impulse(CP::Vec2.new(-2000.0, 0.0), CP::Vec2.new(0.0, 0.0))
+    p = @body.p
+    p_2 = @body_2.p
 
     $connections.each { |linkage, player|
-      linkage.send_line("woo\n")
+      line = [p.x, p.y, p_2.x, p_2.y].join(" ")
+      puts line
+      linkage.send_line(line)
     }
   }
 

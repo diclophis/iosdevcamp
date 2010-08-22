@@ -5,3 +5,4 @@ source 'http://gems.github.com'
 gem "eventmachine"
 gem "nokogiri" # used by the itunes scraper
 gem "chipmunk-ffi"
+gem "eventmachine_httpserver"
