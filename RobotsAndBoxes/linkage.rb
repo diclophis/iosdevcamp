@@ -12,9 +12,11 @@ class Linkage < EventMachine::Connection
         $play = true
       end
     rescue => problem
+      send_data("[]" + "\n")
       puts problem.inspect
       puts problem.backtrace.join("\n")
     end
+    close_connection_after_writing
   end
 
   def post_init
