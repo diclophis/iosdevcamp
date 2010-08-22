@@ -1,7 +1,12 @@
-body {
+body#layout {
   background: #e1eef8 url(../images/bg.jpg) no-repeat;
   width: 320p×;
-  height: 356px;
+  height: 480px;
+}
+body#layout2 {
+  background: #000 url(../images/main_bg.png) no-repeat;
+  width: 768px;
+  color: #fff;
 }
 #form img#twitter {
   display: block;
@@ -53,4 +58,12 @@ div#avatar img {
   width: 50px;
   height: 50px;
   border: 2px solid #333;
+}
+table#grid tr td {
+  background: transparent url(../images/thumb_bg.png) no-repeat;
+  width: 64px;
+  height: 64px;
+}
+table#grid tr td.current {
+  background: transparent url(../images/current_bg.png) no-repeat;
 }

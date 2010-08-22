@@ -12,6 +12,10 @@ class Server < Sinatra::Application
   get '/loading' do
     haml :loading, { :layout => :layout }
   end
+
+  get '/ipad' do
+    haml :ipad, { :layout => :layout2 }
+  end
   
   post '/player' do
     $grid.add(Player.new(session[:id], params[:lat], params[:lon]))

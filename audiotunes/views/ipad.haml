@@ -1,0 +1,13 @@
+- column = 8
+- row = 8
+- count_c = 0
+- count_r = 0
+%table#grid
+  - while count_c < column do
+    %tr
+      - while count_r < row do
+        %td{ :id => "cell_#{count_r}_#{count_c}" }
+          test
+        - count_r += 1
+    - count_c += 1
+    - count_r = 0
