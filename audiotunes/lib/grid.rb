@@ -2,7 +2,7 @@
 
 X = 8
 
-class Player < Struct.new(:id, :latitude, :longitude); end
+class Player < Struct.new(:id, :latitude, :longitude, :avatar); end
 
 class Grid
   attr_accessor :sets
@@ -29,6 +29,10 @@ class Grid
       twod << sets.slice(i * X, X) #.collect(&:id)
     end
     return( twod[x][y] )
+  end
+  
+  def select(id)
+    sets.select{|player| player.id == id}.pop
   end
   
 end
