@@ -2,7 +2,7 @@
 
 X = 8
 
-class Player < Struct.new(:id, :lat, :lon); end
+class Player < Struct.new(:id, :latitude, :longitude); end
 
 class Grid
   attr_accessor :sets
