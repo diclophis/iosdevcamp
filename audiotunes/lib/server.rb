@@ -1,9 +1,5 @@
 ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
-require 'rubygems'
-require 'sinatra'
-require 'haml'
-
 class Server < Sinatra::Application
   
   set :root, ROOT
