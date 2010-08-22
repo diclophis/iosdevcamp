@@ -1,0 +1,13 @@
+:javascript
+  function handler(location) {
+    jQ.post("player", { lat: location.coords.latitude, lon: location.coords.longitude, accuracy: location.coords.accuracy } );
+  }
+  navigator.geolocation.getCurrentPosition(handler);
+  
+%h1
+  Welcome to Music for the People
+%form{:action => "loading", :method => "get"}
+  %input{:type => "text", :name => "user" }
+  %input{:type => "submit", :value => "Submit"}
+
+%div{:id => "message"}

@@ -1,0 +1,32 @@
+body {
+  background: #e1eef8 url(../images/bg.jpg) no-repeat;
+  width: 320p×;
+  height: 356px;
+}
+div#loadingbox {
+  display: table-cell;
+  vertical-align: bottom;
+  width: 240px;
+  height: 54px;
+}
+img#loading_txt {
+  position: relative;
+  top: 240px;
+  left: 20px;
+}
+
+div#avatar {
+  display: inline;
+  position: relative;
+  top: 230px;
+  left: 115px;
+  width: 54px;
+  height: 54px;
+  clear: right;
+}
+div#avatar img {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #333;
+}
