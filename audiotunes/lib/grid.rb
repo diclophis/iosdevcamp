@@ -13,6 +13,7 @@ class Grid
   
   def add(item)
     sets << item unless sets.include?(item)
+    sets.sort{|x,y| x.latitude <=> y.latitude && x.longitude <=> y.longitude}
   end
   
   def export
