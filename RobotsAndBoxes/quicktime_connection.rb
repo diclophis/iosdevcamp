@@ -12,6 +12,7 @@ class QuicktimeConnection < EM::Connection
   attr_accessor :stream
   attr_accessor :file
   attr_accessor :sound
+  attr_accessor :username
 
   def post_init
     @go = false
@@ -44,39 +45,49 @@ class QuicktimeConnection < EM::Connection
     #   @http_headers
     @response = EventMachine::DelegatedHttpResponse.new(self)
     @response.status = 200
+    #puts @http_request_uri.inspect
+    puts @http_query_string.inspect
+    @username = @http_request_uri.split(".").first.gsub(/\//, "")
     case @http_request_uri
       when "/"
-        @response.content = File.readlines('public/index.html').join
+        @response.content = "broken" #File.readlines('public/index.html').join
         @response.send_response
-      when "/index.m3u8"
+      when /m3u8/
         duration = 1
         m3u = "#EXTM3U\n#EXT-X-ALLOW-CACHE:NO\n#EXT-X-TARGETDURATION:#{duration}\n#EXT-X-MEDIA-SEQUENCE:0\n"
-        200.times { |i|
-          m3u += "#EXTINF:#{duration}, no desc\n#{i}.ts\n"
+        1000.times { |i|
+          m3u += "#EXTINF:#{duration}, no desc\n#{username}.#{i}.ts\n"
         }
         m3u += "#EXT-X-ENDLIST\n"
         @response.content = m3u
         @response.send_response
     else
-      @stream = true
+      if @stream
+      else
+        @stream = true
+        player = Player.new
+        player.id = @username
+        player.sound = 1
+        player.latitude = 0.0
+        player.longitude = 0.0
+        player.connection = self
+        $grid.add(player)
+      end
+
       @response.keep_connection_open
       @response.content_type "video/MP2T"
-      #@response.content_type "audio/mp4a-latm"
       if @primed
         @response.content = $audio[@sound]
         @timer = EventMachine.add_periodic_timer(WAIT_FPS) {
           if @go 
-            @stream = false
             @go = false
             @timer.cancel
-            puts @response.content.length
             @response.send_response
           end
         }
       else
         @primed = true 
         @response.content = $audio[0]
-        puts @response.content.length
         @response.send_response
       end
     end
@@ -85,6 +96,10 @@ class QuicktimeConnection < EM::Connection
   def play(sound)
     @go = true
     @sound = sound
+  end
+
+  def play_again
+    @go = true
   end
 end
 

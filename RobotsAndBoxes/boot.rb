@@ -8,12 +8,13 @@ require 'eventmachine'
 require 'nokogiri'
 require 'linkage'
 require 'quicktime_connection'
-require 'player'
 require 'ffi'
 require 'nice-ffi'
 require 'chipmunk-ffi'
 require 'eventmachine_httpserver'
 require 'evma_httpserver/response'
+require 'json'
+require '../audiotunes/lib/grid.rb'
 
 
 HOST = "0.0.0.0"
