@@ -6,11 +6,11 @@ class Server < Sinatra::Application
   
   get '/' do
     session[:id] ||= srand
-    haml :index
+    haml :index, { :layout => :layout }
   end
   
   get '/loading' do
-    haml :loading
+    haml :loading, { :layout => :layout }
   end
   
   post '/player' do
