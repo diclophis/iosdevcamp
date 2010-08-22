@@ -3,6 +3,30 @@ body {
   width: 320p×;
   height: 356px;
 }
+#form img#twitter {
+  display: block;
+  position: relative;
+  margin-top: 60px;
+  margin-left: 45px;
+}
+#form input[type=text] {
+  background: url(../images/text_field.png) no-repeat;
+  display: block;
+  border-width: 0px;
+  width: 224px;
+  height: 49px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-left: 45px;
+}
+#form input[type=image] {
+  display: block;
+  border-width: 0px;
+  width: 225px;
+  height: 58px;
+  margin-top: 70px;
+  margin-left: 45px;
+}
 div#loadingbox {
   display: table-cell;
   vertical-align: bottom;

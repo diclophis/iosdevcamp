@@ -5,9 +5,10 @@
   navigator.geolocation.getCurrentPosition(handler);
   
 %h1
-  Welcome to Music for the People
-%form{:action => "loading", :method => "get"}
+  Welcome to AudioTunes
+%form{ :action => "loading", :method => "get", :id => "form" }
+  %img#twitter{ :src => "images/twitter_txt.png" }
   %input{:type => "text", :name => "user" }
-  %input{:type => "submit", :value => "Submit"}
+  %input{:type => "image", :src => "images/button_up.png" }
 
 %div{:id => "message"}
