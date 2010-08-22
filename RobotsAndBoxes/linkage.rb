@@ -5,11 +5,18 @@ class Linkage < EventMachine::Connection
 
   def receive_line(line)
     puts line.inspect
-    $last_command = line
-  end
-
-  def send_line(line)
-    send_data(line + "\n")
+    begin
+      if line.length > 0
+        send_data(JSON.generate(eval(line)) + "\n")
+      else
+        $play = true
+      end
+    rescue => problem
+      send_data("[]" + "\n")
+      puts problem.inspect
+      puts problem.backtrace.join("\n")
+    end
+    close_connection_after_writing
   end
 
   def post_init

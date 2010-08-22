@@ -1,4 +1,0 @@
-# Player
-
-class Player
-end

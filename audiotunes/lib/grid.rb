@@ -2,7 +2,13 @@
 
 X = 8
 
-class Player < Struct.new(:id, :latitude, :longitude, :avatar); end
+class Player < Struct.new(:id, :latitude, :longitude, :connection, :sound); end
+
+class Player
+  def to_json(*a)
+    [self.id, self.sound].to_json(*a)
+  end
+end
 
 class Grid
   attr_accessor :sets
@@ -28,7 +34,11 @@ class Grid
     ((sets.size / X) + 1).times do |i|
       twod << sets.slice(i * X, X) #.collect(&:id)
     end
-    return( twod[x][y] )
+    return(twod[x][y])
+  end
+
+  def to_json(*a)
+    @sets.to_json(*a)
   end
   
   def select(id)
